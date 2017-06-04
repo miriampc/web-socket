@@ -1,0 +1,28 @@
+{
+  "name": "web-socket",
+  "version": "1.0.0",
+  "description": "Web Sckets",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon server/main.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/miriampc/web-socket.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/miriampc/web-socket/issues"
+  },
+  "homepage": "https://github.com/miriampc/web-socket#readme",
+  "dependencies": {
+    "express": "^4.15.3",
+    "socket.io": "^2.0.2"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
+  }
+}
