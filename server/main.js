@@ -1,12 +1,28 @@
-var express = require('express');
-var app = express();
-var server = require('http').Server (app);
-var io = require('socket.io')(server);
-app.get('/', function (req, res) {
-  res.status(200).send('Hello World miriam wiii');
-});
-io.on()
-server.listen(8080,function(){
-  console.log("server run");
+const express = require('express');
+const app = express();
+const server = require('http').Server(app);
+const io = require('socket.io')(server);
 
+const arrMessages = [{
+    id:1,
+    text: "hola soy un mensajes",
+    author: "miriam"
+}];
+
+app.use(express.static('public'));
+app.get('/',function(req,res){
+   res.status(200).send('Hola mundoo, by miriam');
+});
+
+io.on('connection',function(socket){
+   console.log("Alguien se ha conectado con socket");
+   socket.emit('messages',arrMessages);
+   socket.on('newMessage', function (data) {//evento escuchado del cliente
+        arrMessages.push(data);
+        io.sockets.emit('messages',arrMessages);//servidor completo, para que se envie a todos
+   });
+
+});
+server.listen(8080,function(){
+    console.log("server run");
 });
