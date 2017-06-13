@@ -10,19 +10,19 @@ const arrMessages = [{
 }];
 
 app.use(express.static('public'));
-app.get('/',function(req,res){
-   res.status(200).send('Hola mundoo, by miriam');
+app.get('/',(req,res)=>{
+   res.status(200).send('Hola mundo, by miriam');
 });
 
-io.on('connection',function(socket){
+io.on('connection',(socket)=>{
    console.log("Alguien se ha conectado con socket");
    socket.emit('messages',arrMessages);
-   socket.on('newMessage', function (data) {//evento escuchado del cliente
+   socket.on('newMessage', (data)=> {//evento escuchado del cliente
         arrMessages.push(data);
         io.sockets.emit('messages',arrMessages);//servidor completo, para que se envie a todos
    });
 
 });
-server.listen(8080,function(){
+server.listen(8080,()=>{
     console.log("server run");
 });
